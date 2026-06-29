@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKG Explorer - From Notes to Nodes</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Vis.js for Graph Visualization -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">🎵</span>
+                <h1>CKG Explorer</h1>
+            </div>
+            <div class="header-actions">
+                <button onclick="openSettingsModal()" class="btn-settings" title="Model Configuration">⚙️ Config System</button>
+                <a href="https://nfdi4culture.de" target="_blank" class="btn-outline">NFDI4Culture</a>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout">
+            <!-- Left Panel: Chat and Query -->
+            <section class="panel left-panel">
+                <div class="chat-section">
+                    <h2>Research Assistant</h2>
+                    <p class="subtitle">Ask questions about the musicological knowledge graph</p>
+                    
+                    <div class="chat-history" id="chatHistory">
+                        <div class="message system-msg">
+                            <div class="msg-avatar">🔎</div>
+                            <div class="msg-content">
+                                Hello! I'm your <strong>Research Assistant</strong> for the Culture Knowledge Graph. Try asking:<br><br>
+                                <span class="suggestion" onclick="fillInput('Show me source items by Delsenbach')">"Show me source items by Delsenbach"</span><br>
+                                <span class="suggestion" onclick="fillInput('Find source items with Altar in their title')">"Find source items with Altar in their title"</span><br>
+                                <span class="suggestion" onclick="fillInput('List source items created by someone named Bach')">"List source items created by someone named Bach"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-area">
+                        <input type="text" id="userInput" placeholder="Type your research question here..." onkeypress="handleKeyPress(event)">
+                        <button id="sendBtn" class="btn-primary" onclick="processQuery()">Ask</button>
+                    </div>
+                </div>
+
+                <div class="sparql-section">
+                    <div class="section-header">
+                        <h2>Generated SPARQL</h2>
+                        <button id="runSparqlBtn" class="btn-secondary" onclick="executeSparql()" disabled>Run Query</button>
+                    </div>
+                    <textarea id="sparqlCode" spellcheck="false" placeholder="The generated SPARQL query will appear here... You can edit it before running."></textarea>
+                </div>
+            </section>
+
+            <!-- Right Panel: Results Visualization -->
+            <section class="panel right-panel">
+                <div class="results-header">
+                    <h2>Results Table</h2>
+                </div>
+                
+                <div class="results-container">
+                    <!-- Loading Overlay -->
+                    <div id="loadingOverlay" class="loading-overlay hidden">
+                        <div class="spinner"></div>
+                        <p id="loadingText">Processing...</p>
+                    </div>
+                    
+                    <!-- Table View -->
+                    <div id="tableView" class="view-panel">
+                        <div class="empty-state" id="tableEmptyState">
+                            <span>Execute a query to see tabular data.</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="dataTable">
+                                <thead id="dataTableHead"></thead>
+                                <tbody id="dataTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ System Configuration</h3>
+                <button onclick="closeSettingsModal()" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group toggle-group">
+                    <label class="switch">
+                        <input type="checkbox" id="runLocalToggle" onchange="toggleLocalInputs()">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">Run Processing Locally (Ollama)</span>
+                </div>
+                
+                <div id="apiGroup" class="form-group">
+                    <label for="apiKeyInput">Cloud API Key</label>
+                    <input type="password" id="apiKeyInput" placeholder="Enter API key (or leave blank to use default)...">
+                    <small class="helper-text">Leave blank to use the backend's default free-tier API key.</small>
+                </div>
+                
+                <div id="localGroup" class="form-group hidden">
+                    <div class="form-subgroup">
+                        <label for="localUrlInput">Ollama Endpoint URL</label>
+                        <input type="text" id="localUrlInput" placeholder="http://localhost:11434/api/generate">
+                    </div>
+                    <div class="form-subgroup" style="margin-top: 12px;">
+                        <label for="localModelInput">Ollama Model Name</label>
+                        <input type="text" id="localModelInput" placeholder="gemma">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="saveSettings()" class="btn-primary">Save Config</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot for Table Analysis -->
+    <div id="tableChatbot" class="chatbot-container hidden">
+        <!-- Minimized State Badge -->
+        <div id="chatbotBadge" class="chatbot-badge" onclick="toggleChatbot(true)">
+            <span class="badge-icon">💬</span>
+            <span class="badge-text">Table Assistant</span>
+        </div>
+        
+        <!-- Expanded Chat Window -->
+        <div id="chatWindow" class="chat-window hidden">
+            <div class="chat-window-header">
+                <div class="chat-window-title">
+                    <span class="status-indicator online"></span>
+                    <span>Table Assistant</span>
+                </div>
+                <div class="chat-window-actions">
+                    <button class="btn-window-action" onclick="toggleChatbot(false)" title="Minimize">&minus;</button>
+                </div>
+            </div>
+            
+            <div class="chat-window-body" id="chatWindowBody">
+                <div class="chat-message system">
+                    Welcome to the <strong>Table Assistant</strong>! I can answer questions about the active table or pull details from Wikidata. Ask me anything about the results.
+                </div>
+            </div>
+            
+            <div class="chat-window-footer">
+                <input type="text" id="chatWindowInput" placeholder="Ask about these results..." onkeypress="handleChatWindowKeyPress(event)">
+                <button onclick="sendChatMessage()" class="btn-send-chat">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}?v=1.0.4"></script>
+</body>
+</html>

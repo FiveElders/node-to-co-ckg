@@ -1,0 +1,373 @@
+=== NFDI4Culture Musicological Knowledge Graph Schema ===
+System Instruction: You are an expert musicological AI agent. When generating SPARQL queries, strictly use ONLY the following classes and properties. Do not invent any vocabularies outside this list.
+
+[Prefixes]
+PREFIX nfdi: <https://nfdi.fiz-karlsruhe.de/ontology/>
+PREFIX cto: <https://nfdi4culture.de/ontology/>
+PREFIX schema: <https://schema.org/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+[Classes (Nodes / الكيانات)]
+- AAT classifier: cto:CTO_0001029 (SubClassOf: cto:CTO_0001027)
+- Audio Object: schema:AudioObject (SubClassOf: schema:MediaObject)
+- BnF identifier: nfdi:NFDI_0001069 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Book: schema:Book (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000030)
+- CERL thesaurus classifier: cto:CTO_0001055 (SubClassOf: cto:CTO_0001027)
+- Concept: skos:Concept
+- DDB organization identifier: nfdi:NFDI_0001098 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Data Feed Item: schema:DataFeedItem (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- DataFeed: schema:DataFeed (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- FactGrid identifier: nfdi:NFDI_0001015 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Filmportal Category Vocabulary classifier: cto:CTO_0001054 (SubClassOf: cto:CTO_0001027)
+- GND identifier: nfdi:NFDI_0001009 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- GeoNames identifier: nfdi:NFDI_0001011 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Graphikvokabular classifier: cto:CTO_0001053 (SubClassOf: cto:CTO_0001027)
+- Hornbostel Sachs classifier: cto:CTO_0001052 (SubClassOf: cto:CTO_0001027)
+- ISIL identifier: nfdi:NFDI_0001014 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Iconclass classifier: cto:CTO_0001030 (SubClassOf: cto:CTO_0001027)
+- Image Object: schema:ImageObject (SubClassOf: schema:MediaObject)
+- LCNAF identifier: nfdi:NFDI_0001068 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- LCSH classifier: cto:CTO_0001050 (SubClassOf: cto:CTO_0001027)
+- LandmarksOrHistoricalBuildings: schema:LandmarksOrHistoricalBuildings (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000030)
+- MIME-type: nfdi:NFDI_0000148 (SubClassOf: nfdi:NFDI_0000145)
+- MIMO classifier: cto:CTO_0001051 (SubClassOf: cto:CTO_0001027)
+- Material Culture Thesaurus classifier: cto:CTO_0001059 (SubClassOf: cto:CTO_0001027)
+- Media Object: schema:MediaObject (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- NFDI resource: nfdi:NFDI_0000001 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000002)
+- NFDI_0001095: nfdi:NFDI_0001095 (SubClassOf: nfdi:NFDI_0000222)
+- RISM classifier: cto:CTO_0001031 (SubClassOf: cto:CTO_0001027)
+- RISM identifier: nfdi:NFDI_0001016 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- ROR identifier: nfdi:NFDI_0001013 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Sculpture: schema:Sculpture (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000030)
+- SheetMusic: schema:SheetMusic (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000030)
+- TGN identifier: nfdi:NFDI_0001055 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- TheaterEvent: schema:TheaterEvent (SubClassOf: nfdi:NFDI_0000131)
+- UNESCO Thesaurus classifier: cto:CTO_0001057 (SubClassOf: cto:CTO_0001027)
+- UNIMARC classifier: cto:CTO_0001056 (SubClassOf: cto:CTO_0001027)
+- VIAF identifier: nfdi:NFDI_0001010 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Wikidata classifier: cto:CTO_0001079 (SubClassOf: cto:CTO_0001027)
+- Wikidata identifier: nfdi:NFDI_0001012 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- Wortnetz Kultur classifier: cto:CTO_0001058 (SubClassOf: cto:CTO_0001027)
+- academic discipline: nfdi:NFDI_0000100 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- academic event: nfdi:NFDI_0000018
+- academic organization role: nfdi:NFDI_0000019
+- academic title: nfdi:NFDI_0001040 (SubClassOf: nfdi:NFDI_0000015)
+- act of dissolution: nfdi:NFDI_0001021 (SubClassOf: nfdi:NFDI_0000131)
+- act of foundation: nfdi:NFDI_0001020 (SubClassOf: nfdi:NFDI_0000131)
+- added value textual entity: nfdi:NFDI_0001101 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- affiliation: nfdi:NFDI_0001102 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- agent role: nfdi:NFDI_0000229
+- agent: nfdi:NFDI_0000102 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000004)
+- agriculture: nfdi:NFDI_0010006 (SubClassOf: nfdi:NFDI_0000100)
+- artificial intelligence: nfdi:NFDI_0001063 (SubClassOf: nfdi:NFDI_0010017)
+- author list: nfdi:NFDI_0001030 (SubClassOf: nfdi:NFDI_0001029)
+- biology: nfdi:NFDI_0010004 (SubClassOf: nfdi:NFDI_0000100)
+- chemistry: nfdi:NFDI_0010008 (SubClassOf: nfdi:NFDI_0000100)
+- citation: nfdi:NFDI_0001001 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- city: nfdi:NFDI_0000106 (SubClassOf: nfdi:NFDI_0000005)
+- classifier: cto:CTO_0001027 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- co organizer role: nfdi:NFDI_0001057 (SubClassOf: nfdi:NFDI_0000229)
+- co spokesperson role: nfdi:NFDI_0001058
+- collaboration partner role: nfdi:NFDI_0001059 (SubClassOf: nfdi:NFDI_0000229)
+- collection: nfdi:NFDI_0000107 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000027)
+- comment textual entity: nfdi:NFDI_0001036 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- computer science: nfdi:NFDI_0010017 (SubClassOf: nfdi:NFDI_0000100)
+- conference abstract: nfdi:NFDI_0001104 (SubClassOf: nfdi:NFDI_0000190)
+- conference paper: nfdi:NFDI_0001105 (SubClassOf: nfdi:NFDI_0000190)
+- conference poster: nfdi:NFDI_0001106 (SubClassOf: nfdi:NFDI_0000190)
+- conference: nfdi:NFDI_0010020 (SubClassOf: nfdi:NFDI_0000018)
+- consortium member role: nfdi:NFDI_0000110 (SubClassOf: nfdi:NFDI_0000229)
+- consortium member: nfdi:NFDI_0000007 (SubClassOf: nfdi:NFDI_0000003)
+- consortium partner role: nfdi:NFDI_0001096 (SubClassOf: nfdi:NFDI_0000229)
+- consortium partner: nfdi:NFDI_0001038 (SubClassOf: nfdi:NFDI_0000003)
+- consortium: nfdi:NFDI_0000006
+- construction engineering: nfdi:NFDI_0010018 (SubClassOf: nfdi:NFDI_0000100)
+- contact point role: nfdi:NFDI_0000114 (SubClassOf: nfdi:NFDI_0000229)
+- contact point: nfdi:NFDI_0001005
+- contacting process: nfdi:NFDI_0000111 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- contributing process: nfdi:NFDI_0000115 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- contributor list: nfdi:NFDI_0001031 (SubClassOf: nfdi:NFDI_0001029)
+- contributor role: nfdi:NFDI_0000118 (SubClassOf: nfdi:NFDI_0000229)
+- contributor: nfdi:NFDI_0000231
+- country: nfdi:NFDI_0000119 (SubClassOf: nfdi:NFDI_0000005)
+- course: nfdi:NFDI_0010023 (SubClassOf: nfdi:NFDI_0000018)
+- creation process: nfdi:NFDI_0001025 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- creative process: nfdi:NFDI_0000224
+- creative work: nfdi:NFDI_0000008 (SubClassOf: nfdi:NFDI_0000001)
+- creator list: nfdi:NFDI_0001032 (SubClassOf: nfdi:NFDI_0001029)
+- creator role: nfdi:NFDI_0001026 (SubClassOf: nfdi:NFDI_0000229)
+- cybersecurity: nfdi:NFDI_0001067 (SubClassOf: nfdi:NFDI_0010017)
+- data analysis portal: nfdi:NFDI_0001212 (SubClassOf: nfdi:NFDI_0000123)
+- data analysis software: nfdi:NFDI_0001044 (SubClassOf: nfdi:NFDI_0000198)
+- data cleaning process: nfdi:NFDI_0010034 (SubClassOf: nfdi:NFDI_0010028)
+- data curation service: nfdi:NFDI_0000122 (SubClassOf: nfdi:NFDI_0000101)
+- data handling process: nfdi:NFDI_0010028 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- data integration process: nfdi:NFDI_0010036 (SubClassOf: nfdi:NFDI_0010028)
+- data portal: nfdi:NFDI_0000123 (SubClassOf: nfdi:NFDI_0000223)
+- data processing process: nfdi:NFDI_0010030 (SubClassOf: nfdi:NFDI_0010028)
+- data producing process: nfdi:NFDI_0010029 (SubClassOf: nfdi:NFDI_0010028)
+- data science: nfdi:NFDI_0001066 (SubClassOf: nfdi:NFDI_0010017)
+- data storage process: nfdi:NFDI_0010037 (SubClassOf: nfdi:NFDI_0010028)
+- data transformation process: nfdi:NFDI_0010035 (SubClassOf: nfdi:NFDI_0010028)
+- data visualization process: nfdi:NFDI_0010038 (SubClassOf: nfdi:NFDI_0010028)
+- database software: nfdi:NFDI_0000121 (SubClassOf: nfdi:NFDI_0000198)
+- dataset creation process: nfdi:NFDI_0010031 (SubClassOf: nfdi:NFDI_0010028)
+- dataset documenting process: nfdi:NFDI_0010033 (SubClassOf: nfdi:NFDI_0010028)
+- dataset: nfdi:NFDI_0000009 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- description: nfdi:NFDI_0001018 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- digital object identifier: nfdi:NFDI_0001037 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- document part: nfdi:NFDI_0001029 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- document: nfdi:NFDI_0000022 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- electrical engineering: nfdi:NFDI_0000157 (SubClassOf: nfdi:NFDI_0000100)
+- electronic lab notebook: nfdi:NFDI_0001045 (SubClassOf: nfdi:NFDI_0000198)
+- event implementation specification: nfdi:NFDI_0001050 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- event: nfdi:NFDI_0000131 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- experimental dataset: nfdi:NFDI_0001203 (SubClassOf: nfdi:NFDI_0000009)
+- export format specification: nfdi:NFDI_0001017
+- federal state: nfdi:NFDI_0000134 (SubClassOf: nfdi:NFDI_0000005)
+- file data item: nfdi:NFDI_0000027
+- funding organization role: nfdi:NFDI_0000139
+- funding specification: nfdi:NFDI_0001051 (SubClassOf: nfdi:NFDI_0000203)
+- geoscience: nfdi:NFDI_0010012 (SubClassOf: nfdi:NFDI_0000100)
+- goal textual entity: nfdi:NFDI_0001103 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- hackathon: nfdi:NFDI_0010021 (SubClassOf: nfdi:NFDI_0000018)
+- humanity: nfdi:NFDI_0010001 (SubClassOf: nfdi:NFDI_0000100)
+- identifier: nfdi:NFDI_0000015 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- image processing software: nfdi:NFDI_0001046 (SubClassOf: nfdi:NFDI_0000198)
+- incipit: cto:CTO_0001024 (SubClassOf: nfdi:NFDI_0000015)
+- industry organization role: nfdi:NFDI_0000020
+- information access specification: nfdi:NFDI_0001052 (SubClassOf: nfdi:NFDI_0000203)
+- institution list: nfdi:NFDI_0001033 (SubClassOf: nfdi:NFDI_0001029)
+- interim report: nfdi:NFDI_0001200 (SubClassOf: nfdi:NFDI_0000029)
+- journal article: nfdi:NFDI_0001209 (SubClassOf: nfdi:NFDI_0000190)
+- laboratory: nfdi:NFDI_0001208 (SubClassOf: nfdi:NFDI_0000005)
+- large scale facility: nfdi:NFDI_0001206 (SubClassOf: nfdi:NFDI_0000232)
+- lecture: nfdi:NFDI_0010022 (SubClassOf: nfdi:NFDI_0000018)
+- license: nfdi:NFDI_0000141 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- linked data portal: nfdi:NFDI_0001211 (SubClassOf: nfdi:NFDI_0000123)
+- lyrics: cto:CTO_0001002 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- manufacturer role: nfdi:NFDI_0001060 (SubClassOf: nfdi:NFDI_0000229)
+- materials science: nfdi:NFDI_0010016 (SubClassOf: nfdi:NFDI_0000100)
+- mathematics: nfdi:NFDI_0010011 (SubClassOf: nfdi:NFDI_0000100)
+- mechanical engineering: nfdi:NFDI_0010014 (SubClassOf: nfdi:NFDI_0000100)
+- media type: nfdi:NFDI_0000145 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000033)
+- medicine: nfdi:NFDI_0010005 (SubClassOf: nfdi:NFDI_0000100)
+- meeting: nfdi:NFDI_0001043 (SubClassOf: nfdi:NFDI_0000018)
+- metadata specification: nfdi:NFDI_0001054 (SubClassOf: nfdi:NFDI_0000203)
+- natural science: nfdi:NFDI_0010007 (SubClassOf: nfdi:NFDI_0000100)
+- nfdi consortium: nfdi:NFDI_0001039 (SubClassOf: nfdi:NFDI_0000006)
+- ontology namespace: nfdi:NFDI_0001022 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000027)
+- ontology release version: nfdi:NFDI_0000026 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000027)
+- ontology variant: nfdi:NFDI_0000024 (SubClassOf: http://purl.obolibrary.org/obo/IAO_8000000)
+- ontology version IRI: nfdi:NFDI_0001053 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0020000)
+- ontology: nfdi:NFDI_0000023 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000027)
+- operating system: nfdi:NFDI_0001047 (SubClassOf: nfdi:NFDI_0000198)
+- organization: nfdi:NFDI_0000003 (SubClassOf: nfdi:NFDI_0000102)
+- organizer role: nfdi:NFDI_0001061 (SubClassOf: nfdi:NFDI_0000229)
+- panel discussion: nfdi:NFDI_0010027 (SubClassOf: nfdi:NFDI_0000018)
+- patent: nfdi:NFDI_0000025 (SubClassOf: nfdi:NFDI_0000022)
+- person: nfdi:NFDI_0000004 (SubClassOf: nfdi:NFDI_0000102)
+- physic: nfdi:NFDI_0010010 (SubClassOf: nfdi:NFDI_0000100)
+- place: nfdi:NFDI_0000005 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000029)
+- plan: nfdi:NFDI_0000011 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000017)
+- postal code: nfdi:NFDI_0001041 (SubClassOf: nfdi:NFDI_0000015)
+- presentation document: nfdi:NFDI_0001207 (SubClassOf: nfdi:NFDI_0000022)
+- process engineering: nfdi:NFDI_0000159 (SubClassOf: nfdi:NFDI_0000100)
+- programming language: nfdi:NFDI_0000186 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000104)
+- project proposal: nfdi:NFDI_0001004
+- project: nfdi:NFDI_0000002 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- publication: nfdi:NFDI_0000190 (SubClassOf: nfdi:NFDI_0000022)
+- publisher role: nfdi:NFDI_0000193
+- publishing process: nfdi:NFDI_0000014 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- re3data repository identifier: nfdi:NFDI_0001099 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000578)
+- reference dataset: nfdi:NFDI_0001204 (SubClassOf: nfdi:NFDI_0000009)
+- report: nfdi:NFDI_0000029 (SubClassOf: nfdi:NFDI_0000022)
+- repository hosting data portal: nfdi:NFDI_0001202 (SubClassOf: nfdi:NFDI_0000123)
+- research data repository: nfdi:NFDI_0001201 (SubClassOf: nfdi:NFDI_0000123)
+- seminar: nfdi:NFDI_0010025 (SubClassOf: nfdi:NFDI_0000018)
+- service process: nfdi:NFDI_0000101
+- service product role: nfdi:NFDI_0000228
+- service product: nfdi:NFDI_0000232 (SubClassOf: nfdi:NFDI_0000001)
+- service provider role: nfdi:NFDI_0000230
+- service specification: nfdi:NFDI_0000244 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000104)
+- simulation dataset: nfdi:NFDI_0001205 (SubClassOf: nfdi:NFDI_0000009)
+- simulation software: nfdi:NFDI_0001048 (SubClassOf: nfdi:NFDI_0000198)
+- social science: nfdi:NFDI_0010002 (SubClassOf: nfdi:NFDI_0000100)
+- software application: nfdi:NFDI_0000218 (SubClassOf: nfdi:NFDI_0000198)
+- software development: nfdi:NFDI_0000016 (SubClassOf: http://purl.obolibrary.org/obo/BFO_0000015)
+- software engineering: nfdi:NFDI_0001065 (SubClassOf: nfdi:NFDI_0010017)
+- software library: nfdi:NFDI_0000140 (SubClassOf: nfdi:NFDI_0000198)
+- software method: nfdi:NFDI_0010039 (SubClassOf: nfdi:NFDI_0000198)
+- software module: nfdi:NFDI_0010040 (SubClassOf: nfdi:NFDI_0000198)
+- software repository: nfdi:NFDI_0001210 (SubClassOf: nfdi:NFDI_0000123)
+- software script: nfdi:NFDI_0010041 (SubClassOf: nfdi:NFDI_0000198)
+- software title: nfdi:NFDI_0001000
+- software: nfdi:NFDI_0000198
+- source code repository: nfdi:NFDI_0000030 (SubClassOf: nfdi:NFDI_0000022)
+- source item: cto:CTO_0001005 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- speaker role: nfdi:NFDI_0001062
+- specification: nfdi:NFDI_0000203 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000033)
+- spokesperson role: nfdi:NFDI_0000017
+- standard: nfdi:NFDI_0000206 (SubClassOf: nfdi:NFDI_0000203)
+- status specification: nfdi:NFDI_0001056 (SubClassOf: nfdi:NFDI_0000203)
+- storage service: nfdi:NFDI_0000210 (SubClassOf: nfdi:NFDI_0000101)
+- summer school: nfdi:NFDI_0010024 (SubClassOf: nfdi:NFDI_0000018)
+- support service: nfdi:NFDI_0000214 (SubClassOf: nfdi:NFDI_0000101)
+- symposium: nfdi:NFDI_0010026 (SubClassOf: nfdi:NFDI_0000018)
+- technological method specification: nfdi:NFDI_0000215 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000104)
+- theoretical computer science: nfdi:NFDI_0001064 (SubClassOf: nfdi:NFDI_0010017)
+- title: nfdi:NFDI_0001019 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- training service: nfdi:NFDI_0000219 (SubClassOf: nfdi:NFDI_0000101)
+- uniform resource locator: nfdi:NFDI_0001034 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0020000)
+- web application software: nfdi:NFDI_0000222 (SubClassOf: nfdi:NFDI_0000198)
+- website: nfdi:NFDI_0000223 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000030)
+- work package textual entity: nfdi:NFDI_0001035 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000300)
+- workflow management software: nfdi:NFDI_0001049 (SubClassOf: nfdi:NFDI_0000198)
+- workflow process: nfdi:NFDI_0000227
+- workflow specification: nfdi:NFDI_0001002 (SubClassOf: http://purl.obolibrary.org/obo/IAO_0000104)
+- workflow: nfdi:NFDI_0000021
+- workshop: nfdi:NFDI_0010019 (SubClassOf: nfdi:NFDI_0000018)
+- zone improvement plan code: nfdi:NFDI_0001042 (SubClassOf: nfdi:NFDI_0001041)
+
+[Object Properties (Edges / روابط الكيانات)]
+- NFDI_0001028: nfdi:NFDI_0001028
+- associatedMedia: schema:associatedMedia (Domain: cto:CTO_0001005, Range: schema:MediaObject)
+- best practice of: nfdi:NFDI_0000104
+- contact point of: nfdi:NFDI_0000113
+- contributor of: nfdi:NFDI_0000117
+- data set of: nfdi:NFDI_0000126
+- dataFeedElement: schema:dataFeedElement (Domain: schema:DataFeed, Range: schema:DataFeedItem)
+- file format of: nfdi:NFDI_0000133
+- funding organization of: nfdi:NFDI_0000138 (Domain: nfdi:NFDI_0000003)
+- has agent: nfdi:NFDI_0000240 (Domain: nfdi:NFDI_0000001, Range: nfdi:NFDI_0000102)
+- has best practice: nfdi:NFDI_0000103
+- has broader transitive: skos:broaderTransitive
+- has broader: skos:broader
+- has contact point: nfdi:NFDI_0000112
+- has contributor: nfdi:NFDI_0000116
+- has creator: nfdi:NFDI_0001027
+- has data concept: cto:CTO_0001049 (Domain: http://purl.obolibrary.org/obo/IAO_0000030, Range: skos:Concept)
+- has data set: nfdi:NFDI_0000125 (Range: nfdi:NFDI_0000009)
+- has exact match: skos:exactMatch
+- has external classifier: cto:CTO_0001026 (Range: cto:CTO_0001027)
+- has external identifier: nfdi:NFDI_0001006 (Range: http://purl.obolibrary.org/obo/IAO_0000578)
+- has file format: nfdi:NFDI_0000132 (Range: http://purl.obolibrary.org/obo/IAO_0000098)
+- has funding organization: nfdi:NFDI_0000137 (Domain: nfdi:NFDI_0000002)
+- has holding organization: cto:CTO_0001069 (Domain: cto:CTO_0001005, Range: nfdi:NFDI_0000003)
+- has incipit: cto:CTO_0001065 (Domain: http://purl.obolibrary.org/obo/IAO_0000030, Range: cto:CTO_0001024)
+- has input: nfdi:NFDI_0000152
+- has license: nfdi:NFDI_0000142 (Range: nfdi:NFDI_0000141)
+- has location: nfdi:NFDI_0000144 (Range: nfdi:NFDI_0000005)
+- has lyrics: cto:CTO_0001077 (Domain: cto:CTO_0001005, Range: cto:CTO_0001002)
+- has media type: nfdi:NFDI_0000146 (Range: nfdi:NFDI_0000145)
+- has narrower transitive: skos:narrowerTransitive
+- has narrower: skos:narrower
+- has output: nfdi:NFDI_0000153
+- has parent organization: nfdi:NFDI_0000182 (Domain: nfdi:NFDI_0000003, Range: nfdi:NFDI_0000003)
+- has programming language: nfdi:NFDI_0000187 (Range: nfdi:NFDI_0000186)
+- has related entity: cto:CTO_0001008 (Domain: cto:CTO_0001005)
+- has related event: cto:CTO_0001012 (Domain: cto:CTO_0001005, Range: nfdi:NFDI_0000131)
+- has related item: cto:CTO_0001019 (Domain: cto:CTO_0001005, Range: http://purl.obolibrary.org/obo/IAO_0000030)
+- has related location: cto:CTO_0001011 (Domain: cto:CTO_0001005, Range: nfdi:NFDI_0000005)
+- has related organization: cto:CTO_0001010 (Domain: cto:CTO_0001005, Range: nfdi:NFDI_0000003)
+- has related person: cto:CTO_0001009 (Domain: cto:CTO_0001005, Range: nfdi:NFDI_0000004)
+- has software: nfdi:NFDI_0000199 (Range: nfdi:NFDI_0000198)
+- has sparql endpoint: nfdi:NFDI_0000201
+- has specification: nfdi:NFDI_0000204 (Range: http://purl.obolibrary.org/obo/IAO_0000033)
+- has standard: nfdi:NFDI_0000207 (Range: nfdi:NFDI_0000206)
+- has subject area: nfdi:NFDI_0000211 (Range: nfdi:NFDI_0000100)
+- has subsidiary organization: nfdi:NFDI_0000213 (Domain: nfdi:NFDI_0000003, Range: nfdi:NFDI_0000003)
+- has technology: nfdi:NFDI_0000216 (Range: nfdi:NFDI_0000215)
+- is about real world entity: cto:CTO_0001025 (Domain: http://purl.obolibrary.org/obo/IAO_0000030)
+- is agent of: nfdi:NFDI_0000241
+- is associated media of: cto:CTO_0001013 (Domain: schema:MediaObject, Range: cto:CTO_0001005)
+- is classified by: cto:CTO_0001028 (Domain: cto:CTO_0001027)
+- is data feed element of: cto:CTO_0001003
+- is holding organization of: cto:CTO_0001081 (Domain: nfdi:NFDI_0000003, Range: cto:CTO_0001005)
+- is identified by: nfdi:NFDI_0001003
+- is incipit of: cto:CTO_0001066 (Domain: cto:CTO_0001024, Range: http://purl.obolibrary.org/obo/IAO_0000030)
+- is input of: nfdi:NFDI_0001024
+- is item of: cto:CTO_0001004
+- is lyrics of: cto:CTO_0001078
+- is output of: nfdi:NFDI_0001023
+- is referenced in: cto:CTO_0001006 (Domain: cto:CTO_0001005, Range: schema:DataFeed)
+- is related entity of: cto:CTO_0001014
+- is related event of: cto:CTO_0001016
+- is related item of: cto:CTO_0001020
+- is related location of: cto:CTO_0001017
+- is related organization of: cto:CTO_0001018
+- is related person of: cto:CTO_0001015
+- is subject of: nfdi:NFDI_0000226
+- item: schema:item (Domain: schema:DataFeedItem, Range: cto:CTO_0001005)
+- license of: nfdi:NFDI_0000143
+- license: schema:license (Domain: http://purl.obolibrary.org/obo/IAO_0000030)
+- media type of: nfdi:NFDI_0000147
+- programming language of: nfdi:NFDI_0000188
+- published by: nfdi:NFDI_0000191 (Domain: http://purl.obolibrary.org/obo/IAO_0000030)
+- publisher of: nfdi:NFDI_0000192
+- represented collection of: nfdi:NFDI_0000196
+- represents collection: nfdi:NFDI_0000195 (Range: nfdi:NFDI_0000107)
+- resource of project: nfdi:NFDI_0000194 (Domain: nfdi:NFDI_0000001, Range: nfdi:NFDI_0000002)
+- software of: nfdi:NFDI_0000200
+- sparql endpoint of: nfdi:NFDI_0000202
+- specification of: nfdi:NFDI_0000205
+- standard of: nfdi:NFDI_0000208
+- subject area of: nfdi:NFDI_0000212
+- technology of: nfdi:NFDI_0000217
+
+[Data Properties (Filters / الفلاتر والخصائص)]
+- birth date: nfdi:NFDI_0000105 (Domain: nfdi:NFDI_0000004, Range: rdfs:Literal)
+- death date: nfdi:NFDI_0000127 (Domain: nfdi:NFDI_0000004, Range: rdfs:Literal)
+- dissolution date: nfdi:NFDI_0000128 (Domain: nfdi:NFDI_0000003, Range: rdfs:Literal)
+- file extension: nfdi:NFDI_0000135 (Domain: nfdi:NFDI_0000001)
+- foundation date: nfdi:NFDI_0000136 (Domain: nfdi:NFDI_0000003, Range: rdfs:Literal)
+- has approximate period: cto:CTO_0001071 (Range: rdfs:Literal)
+- has clef: cto:CTO_0001061 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has content url: cto:CTO_0001021
+- has creation date: cto:CTO_0001072 (Range: xsd:dateTime)
+- has creation period: cto:CTO_0001073 (Range: rdfs:Literal)
+- has destruction date: cto:CTO_0001074 (Range: xsd:dateTime)
+- has existence period: cto:CTO_0001075 (Range: rdfs:Literal)
+- has incipit pattern: cto:CTO_0001063 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has incipit time signature: cto:CTO_0001060 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has incipit value: cto:CTO_0001023 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has key signature: cto:CTO_0001062 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has key: cto:CTO_0001064 (Domain: cto:CTO_0001024, Range: rdfs:Literal)
+- has legal statement: cto:CTO_0001000 (Range: rdfs:Literal)
+- has license statement: cto:CTO_0001007 (Range: rdfs:Literal)
+- has lyrics text: cto:CTO_0001067 (Domain: cto:CTO_0001002, Range: rdfs:Literal)
+- has rights statement: cto:CTO_0001022 (Range: rdfs:Literal)
+- has shelf mark: cto:CTO_0001068 (Domain: cto:CTO_0001005, Range: rdfs:Literal)
+- has source file: cto:CTO_0001080
+- has temporal coverage: cto:CTO_0001070 (Range: rdfs:Literal)
+- has url: nfdi:NFDI_0001008 (Range: xsd:anyURI)
+- has value: nfdi:NFDI_0001007
+
+[Example Queries]
+Example 1: Find a person's birth date
+```sparql
+PREFIX nfdi: <https://nfdi.fiz-karlsruhe.de/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?birthDate WHERE {
+  ?person a nfdi:NFDI_0000004 .
+  ?person rdfs:label "Ludwig van Beethoven" .
+  ?person nfdi:NFDI_0000105 ?birthDate .
+}
+```
+
+Example 2: Find source items (e.g. manuscripts) related to a specific person
+```sparql
+PREFIX cto: <https://nfdi4culture.de/ontology/>
+PREFIX nfdi: <https://nfdi.fiz-karlsruhe.de/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?sourceItem ?title WHERE {
+  ?person a nfdi:NFDI_0000004 .
+  ?person rdfs:label "Ludwig van Beethoven" .
+  ?sourceItem a cto:CTO_0001005 .
+  ?sourceItem cto:CTO_0001009 ?person .
+  ?sourceItem rdfs:label ?title .
+}
+```

@@ -1,0 +1,46 @@
+# Virtual Environments
+venv/
+env/
+ENV/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE / OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test and Scratch Files (ignored for a clean GitHub repo)
+test_*.py
+run_test_suite.py
+run_comparative_test.py
+diagnose_delsenbach.py
+find_working_query.py
+full_diagnosis.py
+
+# Generated Reports
+test_suite_report.md
+comparison_report.md
