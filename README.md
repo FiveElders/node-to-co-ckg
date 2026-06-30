@@ -63,6 +63,8 @@ This platform is highly flexible, supporting both cloud-based APIs and fully loc
 
 ### Installation & Setup
 
+* **Prerequisites:** Python 3.10.9 (or Python 3.10+) is recommended.
+
 1. **Clone the repository** and navigate into the project directory:
    ```bash
    git clone https://github.com/FiveElders/ckg-explorer.git
@@ -88,6 +90,9 @@ This platform is highly flexible, supporting both cloud-based APIs and fully loc
 
 ### Option A: Cloud Execution (Google AI Studio)
 If you lack the hardware infrastructure for local execution, you can leverage Google's Generative AI APIs. Google provides limited free-tier access to test their models, including state-of-the-art open-source variants.
+
+> [!NOTE]
+> This option is intended to run open-source models like Gemma (e.g., `gemma-4-31b-it` / `gemma-4-26b-a4b-it`) through Google AI Studio. Alternatively, you can run Gemini Flash (e.g., `gemini-2.5-flash`), which yields highly comparable results with faster execution.
 1. Obtain an API Key from [Google AI Studio](https://aistudio.google.com/).
 2. Provide your API key using **one of the following three simple methods**:
    
