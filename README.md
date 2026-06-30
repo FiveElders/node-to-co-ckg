@@ -125,17 +125,41 @@ If you lack the hardware infrastructure for local execution, you can leverage Go
 
 ### Option B: Fully Local Execution (Ollama)
 For environments requiring strict data privacy or offline capabilities, the system supports open-source models via [Ollama](https://ollama.com/).
-1. Install Ollama on your machine.
-2. If you have a powerful GPU, you can pull high-performance open-source models. For example:
-   ```bash
-   ollama pull gemma-4-31b-it
-   ```
-   *(For budget hardware, lightweight models like `gemma-4-26b-a4b-it` or `gemma4:12b` are highly recommended and yield near-identical syntactical performance).*
-3. Launch the app (`python app.py`) and navigate to `http://127.0.0.1:5050` in your browser.
-4. Click the **⚙️ Config System** button in the top right corner of the UI.
-5. Enable **Run Processing Locally (Ollama)** and enter your local model name.
 
-![Settings Modal](docs_img/settings_modal.png)
+#### 1. Install Ollama on your machine
+* **Windows (GUI):** Download and run the installer from the official [Ollama Download Page](https://ollama.com/download).
+* **Windows (Command Line):** Run `winget install Ollama` in Command Prompt/PowerShell.
+* **macOS:** Download the app from the website, or install via Homebrew: `brew install ollama`.
+* **Linux:** Run the official install script:
+  ```bash
+  curl -fsSL https://ollama.com/install.sh | sh
+  ```
+
+*Once installed, the Ollama service automatically runs in the background, listening on port `11434` (accessible locally at `http://localhost:11434`).*
+
+#### 2. Download (Pull) a Model
+Open your terminal and download the desired model by running one of the following commands:
+* **High-Performance (Recommended):**
+  ```bash
+  ollama pull gemma-4-31b-it
+  ```
+* **Lightweight/Budget Hardware:**
+  ```bash
+  ollama pull gemma-4-26b-a4b-it
+  ```
+
+#### 3. Connect Ollama in the Web UI
+1. Launch the application:
+   ```bash
+   python app.py
+   ```
+2. Navigate to `http://127.0.0.1:5050` in your web browser.
+3. Click the **⚙️ Config System** button in the top right corner of the header.
+4. Check the **Run Processing Locally (Ollama)** toggle.
+5. Enter the connection settings:
+   * **Ollama Endpoint URL:** Enter `http://localhost:11434/api/generate` (this is the local API endpoint exposed by the background Ollama service).
+   * **Ollama Model Name:** Enter the exact name of the model you pulled (e.g., `gemma-4-31b-it` or `gemma-4-26b-a4b-it`).
+6. Click **Save Config**. The Flask backend will dynamically update its runtime configuration without requiring a server restart.
 
 ---
 
