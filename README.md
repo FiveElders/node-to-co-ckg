@@ -161,6 +161,13 @@ Open your terminal and download the desired model by running one of the followin
    * **Ollama Model Name:** Enter the exact name of the model you pulled (e.g., `gemma-4-31b-it` or `gemma-4-26b-a4b-it`).
 6. Click **Save Config**. The Flask backend will dynamically update its runtime configuration without requiring a server restart.
 
+> [!IMPORTANT]
+> **Optimized Request Parameters:** 
+> To ensure the local model does not truncate long SPARQL schemas or output invalid syntax, the backend automatically configures Ollama's generation options with the following parameters:
+> * **`num_ctx: 32000`**: Increases the context window to 32k tokens to prevent context loss during complex ontology parsing.
+> * **`temperature: 0.1`**: A low temperature ensures highly deterministic, syntax-accurate SPARQL generation.
+> * **`num_predict: -1`**: Disables generation length limits to prevent truncated queries.
+
 ---
 
 ##  Running the Validation Suite
